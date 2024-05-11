@@ -29,5 +29,7 @@ module.exports = {
     "quote-props": "off",
     semi: "off",
     "object-curly-spacing": ["error", "always"],
+    "linebreak-style": "off",
+    "max-len": "off",
   },
 }

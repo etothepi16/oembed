@@ -4,8 +4,12 @@
   "description": "A simple implementation of the oEmbed standard using Firebase.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write ."
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/etothepi16/oembed.git"
@@ -18,5 +22,12 @@
   "bugs": {
     "url": "https://github.com/etothepi16/oembed/issues"
   },
-  "homepage": "https://github.com/etothepi16/oembed#readme"
+  "homepage": "https://github.com/etothepi16/oembed#readme",
+  "dependencies": {
+    "firebase": "^10.11.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11"
+  }
 }

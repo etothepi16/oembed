@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>oEmbed Demo</title>
+  </head>
+  <body>
+    <header>
+      <h1>oEmbed Demo</h1>
+      <form>
+        <label for="url">URL:</label>
+        <input type="url" id="url" name="url" required />
+        <label for="format">Format</label>
+        <select id="format" name="format" required>
+          <option value="json">JSON</option>
+          <option value="xml">XML</option>
+        </select>
+        <button type="submit">Embed</button>
+      </form>
+      <div id="embed">
+        <h2>Embed Result</h2>
+        <div id="embed-content">
+          <p>Enter a URL and select a format to embed content.</p>
+        </div>
+      </div>
+    </header>
+    <script type="module" src="main.ts"></script>
+  </body>
+</html>

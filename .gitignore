@@ -6,6 +6,8 @@ yarn-debug.log*
 yarn-error.log*
 firebase-debug.log*
 firebase-debug.*.log*
+pnpm-debug.log*
+lerna-debug.log*
 
 # Firebase cache
 .firebase/
@@ -64,3 +66,18 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
