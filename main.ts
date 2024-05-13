@@ -14,18 +14,18 @@ const baseURL = isLocal
   ? `http://127.0.0.1:5001/${projectId}/us-central1`
   : `https://us-central1-${projectId}.cloudfunctions.net`
 
-document.head.innerHTML += `<link rel="alternate" type="application/json+oembed" href="${baseURL}/oEmbed/?url=${encodeURIComponent(
+document.head.innerHTML += `<link rel="alternate" type="application/json+oembed" href="${baseURL}/oEmbed?url=${encodeURIComponent(
   window.location.href
 )}&format=json" title="${document.title}" />`
-document.head.innerHTML += `<link rel="alternate" type="application/xml+oembed" href="${baseURL}/oEmbed/?url=${encodeURIComponent(
+document.head.innerHTML += `<link rel="alternate" type="application/xml+oembed" href="${baseURL}/oEmbed?url=${encodeURIComponent(
   window.location.href
 )}&format=xml" title="${document.title}" />`
 
-document.body.innerHTML += `<a href="${baseURL}/oEmbed/?url=${encodeURIComponent(
+document.body.innerHTML += `<a href="${baseURL}/oEmbed?url=${encodeURIComponent(
   window.location.href
 )}&format=json">JSON oEmbed</a>`
 document.body.innerHTML += "<br />"
-document.body.innerHTML += `<a href="${baseURL}/oEmbed/?url=${encodeURIComponent(
+document.body.innerHTML += `<a href="${baseURL}/oEmbed?url=${encodeURIComponent(
   window.location.href
 )}&format=xml">XML oEmbed</a>`
 
