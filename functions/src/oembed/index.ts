@@ -1,6 +1,5 @@
 import { onRequest } from "firebase-functions/v2/https"
 import { parse } from "node-html-parser"
-// import xml = require("xml")
 
 export const oEmbedConsumer = onRequest(
   { cors: true },

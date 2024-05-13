@@ -14,8 +14,7 @@
   "dependencies": {
     "firebase-admin": "^12.1.0",
     "firebase-functions": "^5.0.1",
-    "node-html-parser": "^6.1.13",
-    "xml": "^1.0.1"
+    "node-html-parser": "^6.1.13"
   },
   "devDependencies": {
     "@types/xml": "^1.0.11",
