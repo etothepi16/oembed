@@ -16,10 +16,10 @@ const baseURL = isLocal
 
 document.head.innerHTML += `<link rel="alternate" type="application/json+oembed" href="${baseURL}/oEmbed/?url=${encodeURIComponent(
   window.location.href
-)}&format=json" />`
+)}&format=json" title="${document.head.title}" />`
 document.head.innerHTML += `<link rel="alternate" type="application/xml+oembed" href="${baseURL}/oEmbed/?url=${encodeURIComponent(
   window.location.href
-)}&format=xml" />`
+)}&format=xml" title="${document.head.title}" />`
 
 document.body.innerHTML += `<a href="${baseURL}/oEmbed/?url=${encodeURIComponent(
   window.location.href
