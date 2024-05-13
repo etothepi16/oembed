@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app"
 import { connectAuthEmulator, getAuth, signInAnonymously } from "firebase/auth"
 import { connectFunctionsEmulator, getFunctions } from "firebase/functions"
-import { $HTTP } from "./HTTP"
 import { firebaseConfig } from "./config"
 
 initializeApp(firebaseConfig)
@@ -9,7 +8,28 @@ initializeApp(firebaseConfig)
 const auth = getAuth()
 const functions = getFunctions()
 
-if (window.location.hostname === "localhost") {
+const isLocal = window.location.hostname === "localhost"
+const projectId = firebaseConfig.projectId
+const baseURL = isLocal
+  ? `http://127.0.0.1:5001/${projectId}/us-central1`
+  : `https://us-central1-${projectId}.cloudfunctions.net`
+
+document.head.innerHTML += `<link rel="alternate" type="application/json+oembed" href="${baseURL}/oEmbed/?url=${encodeURIComponent(
+  window.location.href
+)}&format=json" />`
+document.head.innerHTML += `<link rel="alternate" type="application/xml+oembed" href="${baseURL}/oEmbed/?url=${encodeURIComponent(
+  window.location.href
+)}&format=xml" />`
+
+document.body.innerHTML += `<a href="${baseURL}/oEmbed/?url=${encodeURIComponent(
+  window.location.href
+)}&format=json">JSON oEmbed</a>`
+document.body.innerHTML += "<br />"
+document.body.innerHTML += `<a href="${baseURL}/oEmbed/?url=${encodeURIComponent(
+  window.location.href
+)}&format=xml">XML oEmbed</a>`
+
+if (isLocal) {
   connectAuthEmulator(auth, "http://127.0.0.1:9099")
   connectFunctionsEmulator(functions, "127.0.0.1", 5001)
 }
@@ -32,71 +52,4 @@ auth.onAuthStateChanged((user) => {
       }
     })
   }
-})
-
-const embedButton = document.getElementById("embed") as HTMLButtonElement
-const embedForm = document.getElementById("embed-form") as HTMLFormElement
-const embedResult = document.getElementById(
-  "embed-result"
-) as HTMLTextAreaElement
-
-const loading = document.getElementById("loading") as HTMLDivElement
-
-function oEmbedConsumer() {
-  const url = embedForm.url.value as string
-  const maxwidth = embedForm.maxwidth.value
-  const maxheight = embedForm.maxheight.value
-  const format = embedForm.format.value as "json" | "xml"
-
-  loading.classList.toggle("hidden")
-  embedResult.value = "Loading..."
-  if (!url) {
-    window.alert("Missing URL parameter")
-    return
-  }
-
-  const query: {
-    url: string
-    format?: string
-    maxwidth?: string
-    maxheight?: string
-  } = { url }
-
-  if (format) {
-    query.format = format
-  }
-  if (maxwidth) {
-    query.maxwidth = maxwidth
-  }
-  if (maxheight) {
-    query.maxheight = maxheight
-  }
-
-  $HTTP({
-    method: "GET",
-    path: "oEmbedConsumer",
-    query,
-  })
-    .then((response) => {
-      console.log("response: %o", response)
-      if (response.headers.get("Content-Type") === "application/json") {
-        response.json().then((json) => {
-          embedResult.value = JSON.stringify(json, null, 2)
-        })
-      } else {
-        response.text().then((text) => {
-          embedResult.value = text
-        })
-      }
-    })
-    .catch((error) => {
-      console.error(error)
-    })
-    .finally(() => {
-      loading.classList.toggle("hidden")
-    })
-}
-embedButton.addEventListener("click", (e) => {
-  e.preventDefault()
-  oEmbedConsumer()
 })
