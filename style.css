@@ -38,3 +38,8 @@
 #embed h2 {
   display: inline-block;
 }
+
+image {
+  display: block;
+  max-width: 10%;
+}
