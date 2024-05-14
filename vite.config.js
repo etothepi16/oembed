@@ -6,7 +6,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: "index.html",
-        cats: "demo.html",
+        page1: "page1.html",
+        page2: "page2.html",
+        page3: "page3.html",
       },
     },
   },
